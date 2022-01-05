@@ -79,22 +79,22 @@ onoff = df2[df2['bot_name'] =='ticker-tweet']['select'].tolist()[0]
 keywords = df4[df4['bot_name'] == 'fav']['keyword'].tolist()
 follow_list = df4[df4['bot_name'] == 'follow']['keyword'].tolist()
 
-# try:
-#     tickertweet(tickers,start_date,end_date,api,onoff)
-# except Exception as e:
-#     print(e)
+try:
+    tickertweet(tickers,start_date,end_date,api,onoff)
+except Exception as e:
+    print(e)
 
-# for i in keywords:
-#     fav(i,api)
+for i in keywords:
+    fav(i,api)
 
-# followdestroy(api)
+followdestroy(api)
 
-# for i in follow_list:
-#     follow(i,api)
+for i in follow_list:
+    follow(i,api)
 
-# Tickers = df1[df1['bot_name'] == 'sector']
-# print(Tickers)
-# performance(Tickers,api,'セクター別パフォーマンス')
+Tickers = df1[df1['bot_name'] == 'sector']
+print(Tickers)
+performance(Tickers,api,'セクター別パフォーマンス')
 
 Tickers = df1[df1['bot_name'] == 'GAFAM']
 print(Tickers)
