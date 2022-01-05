@@ -51,7 +51,7 @@ def performance(Tickers,api,title):
 
         tag = tag + '$' + ticker + ' '
 
-        text = text + name + str(growth) + '\n'
+        text = text + name + ' ' + str(growth) + '%' + '\n'
     
     api.update_status(
         status= title + '(' + start_date + '~' + ')' +  '\n' + text + tag,

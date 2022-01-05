@@ -41,7 +41,6 @@ credential = {
 "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
 "client_x509_cert_url":  os.environ['SHEET_CLIENT_X509_CERT_URL']
 }
-print(credential)
 # スプレッドシートにアクセス
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope)
 gc = gspread.authorize(credentials)
@@ -73,14 +72,17 @@ df3 = get_records(wks3)
 df4 = get_records(wks4)
 
 # リストに変換
-tickers = df1['Ticker'].tolist()
+tickers = df1[df1['bot_name'] =='tickertweet']['Ticker'].tolist()
 start_date = df3[df3['bot_name'] =='ticker-tweet']['start'].tolist()[0].replace('/','-')
 end_date = df3[df3['bot_name'] =='ticker-tweet']['end'].tolist()[0].replace('/','-')
 onoff = df2[df2['bot_name'] =='ticker-tweet']['select'].tolist()[0]
 keywords = df4[df4['bot_name'] == 'fav']['keyword'].tolist()
 follow_list = df4[df4['bot_name'] == 'follow']['keyword'].tolist()
 
-# tickertweet(tickers,start_date,end_date,api,onoff)
+# try:
+#     tickertweet(tickers,start_date,end_date,api,onoff)
+# except Exception as e:
+#     print(e)
 
 # for i in keywords:
 #     fav(i,api)
@@ -90,6 +92,10 @@ follow_list = df4[df4['bot_name'] == 'follow']['keyword'].tolist()
 # for i in follow_list:
 #     follow(i,api)
 
-Tickers = df1[df1['bot_name'] == 'sector']
-print(Tickers)
+# Tickers = df1[df1['bot_name'] == 'sector']
+# print(Tickers)
 # performance(Tickers,api,'セクター別パフォーマンス')
+
+Tickers = df1[df1['bot_name'] == 'GAFAM']
+print(Tickers)
+performance(Tickers,api,'GAFAMパフォーマンス')
