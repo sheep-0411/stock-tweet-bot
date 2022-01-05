@@ -24,14 +24,28 @@ file_name = 'python-investment'
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
- 
+
+# 環境変数の読み込み
+load_dotenv(find_dotenv())
+
+# 辞書オブジェクト。認証に必要な情報をHerokuの環境変数から呼び出している
+credential = {
+"type": "service_account",
+"project_id": os.environ['SHEET_PROJECT_ID'],
+"private_key_id": os.environ['SHEET_PRIVATE_KEY_ID'],
+"private_key": os.environ['SHEET_PRIVATE_KEY'],
+"client_email": os.environ['SHEET_CLIENT_EMAIL'],
+"client_id": os.environ['SHEET_CLIENT_ID'],
+"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+"token_uri": "https://oauth2.googleapis.com/token",
+"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+"client_x509_cert_url":  os.environ['SHEET_CLIENT_X509_CERT_URL']
+}
+print(credential)
 # スプレッドシートにアクセス
-credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file, scope)
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope)
 gc = gspread.authorize(credentials)
 sh = gc.open(file_name)
-
-# TwitterAPIの初期設定
-load_dotenv(find_dotenv())
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
@@ -66,16 +80,16 @@ onoff = df2[df2['bot_name'] =='ticker-tweet']['select'].tolist()[0]
 keywords = df4[df4['bot_name'] == 'fav']['keyword'].tolist()
 follow_list = df4[df4['bot_name'] == 'follow']['keyword'].tolist()
 
-tickertweet(tickers,start_date,end_date,api,onoff)
+# tickertweet(tickers,start_date,end_date,api,onoff)
 
-for i in keywords:
-    fav(i,api)
+# for i in keywords:
+#     fav(i,api)
 
-followdestroy(api)
+# followdestroy(api)
 
-for i in follow_list:
-    follow(i,api)
+# for i in follow_list:
+#     follow(i,api)
 
 Tickers = df1[df1['bot_name'] == 'sector']
 print(Tickers)
-performance(Tickers,api,'セクター別パフォーマンス')
+# performance(Tickers,api,'セクター別パフォーマンス')
