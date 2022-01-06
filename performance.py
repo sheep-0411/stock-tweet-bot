@@ -7,10 +7,10 @@ import pandas as pd
 import time
 import numpy as np
 
-results = []
+
 
 def performance(Tickers,api,title):
-    
+    results = []
     figsize_px = np.array([1200, 675])
     dpi = 100
     figsize_inch = figsize_px / dpi
@@ -30,7 +30,6 @@ def performance(Tickers,api,title):
         ax.plot(rate,label=name) #グラフを重ねて描写していく
     Tickers['growth'] = results
     df = Tickers.sort_values('growth',ascending=False).reset_index(drop=True)
-    print(df)
     ax.set_title(start_date + '~')
     ax.legend()
     ax.grid()

@@ -92,10 +92,10 @@ followdestroy(api)
 for i in follow_list:
     follow(i,api)
 
-Tickers = df1[df1['bot_name'] == 'sector']
-print(Tickers)
-performance(Tickers,api,'セクター別パフォーマンス')
+Tickers1 = df1[df1['bot_name'] == 'sector']
+print(Tickers1)
+performance(Tickers1,api,'セクター別パフォーマンス')
 
-Tickers = df1[df1['bot_name'] == 'GAFAM']
-print(Tickers)
-performance(Tickers,api,'GAFAMパフォーマンス')
+Tickers2 = df1[df1['bot_name'] == 'GAFAM']
+print(Tickers2)
+performance(Tickers2,api,'GAFAMパフォーマンス')

@@ -39,11 +39,24 @@ def follow(screen_name,api):
 
 # 日曜日にフォロー解除を行う。それ以外はふぁぼる。
 def followdestroy(api):
+    followers = api.get_follower_ids(user_id='IFD_OCO3')
+    friends = api.get_friend_ids(user_id='IFD_OCO3')
+
     if datetime.date.today().weekday() == 6:
-        followers = api.get_follower_ids(user_id='IFD_OCO3')
-        friends = api.get_friend_ids(user_id='IFD_OCO3')
         for f in friends:
             if f not in followers:
                 print("ID:{}のフォローを解除します".format(api.get_user(user_id=f).screen_name))
                 if api.get_user(user_id=f).screen_name != 'hirosetakao':
                     api.destroy_friendship(user_id=f)
+    else:
+        for f in friends:
+            if f not in followers:
+                tweets = api.user_timeline(id=f, count=2)
+                for tweet in tweets:
+                    print("=============================")
+                    print(tweet.text)
+                    try:
+                        api.create_favorite(tweet.id)
+                    except Exception as e:
+                        print(e)
+
