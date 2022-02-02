@@ -5,7 +5,6 @@ from performance import performance
 # Googleスプレッドシートとの連携に必要なライブラリ
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import csv
 
 import yfinance as yf
 import pandas as pd
@@ -19,7 +18,6 @@ from PIL import Image, ImageFont, ImageDraw
 import numpy as np
 
 # 設定
-json_file = 'investment-bot-337301-f2a71983033e.json'
 file_name = 'python-investment'
 
 scope = ['https://spreadsheets.google.com/feeds',

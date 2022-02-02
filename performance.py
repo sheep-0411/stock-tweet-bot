@@ -18,7 +18,7 @@ def performance(Tickers,api,title):
     ax.set_ylabel('%') #y軸のラベルを設定する
 
     today = datetime.date.today()
-    start_date = '2022-' + str(today.month) + '-1'
+    start_date = '2022-1-1'
     end_date = str(today.year) + '-12-31'
 
     for name,ticker in zip(Tickers['Name'], Tickers['Ticker']):
