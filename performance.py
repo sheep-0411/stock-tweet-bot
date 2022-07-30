@@ -56,9 +56,3 @@ def performance(Tickers,api,title):
         status= title + '(' + start_date + '~' + ')' +  '\n' + text + tag,
         media_ids= media_ids,
     )
-
-
-
-
-        
- 
