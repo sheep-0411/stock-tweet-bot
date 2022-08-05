@@ -94,6 +94,6 @@ Tickers1 = df1[df1['bot_name'] == 'sector']
 print(Tickers1)
 performance(Tickers1,api,'セクター別パフォーマンス')
 
-Tickers2 = df1[df1['bot_name'] == 'GAFAM']
+Tickers2 = df1[df1['bot_name'] == 'GATMAN']
 print(Tickers2)
-performance(Tickers2,api,'GAFAMパフォーマンス')
+performance(Tickers2,api,'GATMANパフォーマンス')
